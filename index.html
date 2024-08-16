@@ -37,6 +37,12 @@
             color: #333;
         }
 
+        .date {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+            color: #444;
+        }
+
         .time {
             font-size: 2.5em;
             margin-bottom: 10px;
@@ -62,7 +68,6 @@
             display: flex;
             align-items: center;
             transition: transform 0.3s;
-            
         }
 
         .social-icons a {
@@ -96,6 +101,7 @@
 <body>
     <div class="container">
         <h1>Welcome</h1>
+        <div class="date" id="date"></div>
         <div class="time" id="time"></div>
         <div class="quote" id="quote"></div>
         <div class="social-icons">
@@ -125,6 +131,14 @@
             if (Math.random() < 0.10) { // 10% chance
                 window.location.href = 'https://www.youtube.com/watch?v=uHgt8giw1LY'; // Replace with desired YouTube video URL
             }
+        }
+
+        function updateDate() {
+            const dateElement = document.getElementById('date');
+            const now = new Date();
+            const options = {  year: 'numeric', month: 'numeric', day: 'numeric' };
+            const dateString = now.toLocaleDateString(undefined, options);
+            dateElement.textContent = dateString;
         }
 
         function updateTime() {
@@ -165,6 +179,7 @@
 
         window.onload = function() {
             maybeRedirect(); // Check for redirection on page load
+            updateDate(); // Display date on page load
             setInterval(updateTime, 1000); // Update time every second
             updateTime(); // Initial call to display time immediately
             displayRandomQuote(); // Display a random quote on page load
