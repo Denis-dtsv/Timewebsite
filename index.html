@@ -4,57 +4,65 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1">
     <title>Modern Website</title>
-    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <style>
         body {
-            font-family: 'Arial', sans-serif;
-            background-color: #f4f4f4;
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(135deg, rgb(21, 255, 0), rgb(14, 121, 0));
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
             margin: 0;
-            overflow: hidden; /* Prevent scrollbars during redirection */
+            overflow: hidden;
+            color: #fff;
         }
 
         .container {
             text-align: center;
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
             width: 90%;
-            max-width: 400px;
+            max-width: 500px;
             box-sizing: border-box;
+            backdrop-filter: blur(10px);
         }
 
         h1 {
             margin: 0 0 20px;
-            font-size: 1.5em;
+            font-size: 2em;
+            font-weight: 700;
+            color: #333;
         }
 
         .time {
-            font-size: 2em;
+            font-size: 2.5em;
             margin-bottom: 10px;
+            color: #444;
         }
 
         .quote {
             font-family: 'EB Garamond', serif;
-            font-size: 0.8em;
-            color: #555;
+            font-size: 1em;
+            color: #666;
             margin-bottom: 20px;
         }
 
         .social-icons {
             display: flex;
-            flex-direction: column;
-            align-items: center;
+            flex-direction: row;
+            justify-content: center;
             gap: 20px;
+            padding-bottom: 10px;
         }
 
         .social-icon {
             display: flex;
             align-items: center;
+            transition: transform 0.3s;
+            
         }
 
         .social-icons a {
@@ -75,8 +83,13 @@
             transform: scale(1.1);
         }
 
+        .social-icon:hover {
+            transform: scale(1.1);
+        }
+
         .social-name {
             font-size: 1.2em;
+            color: #333;
         }
     </style>
 </head>
@@ -84,7 +97,17 @@
     <div class="container">
         <h1>Welcome</h1>
         <div class="time" id="time"></div>
-        <div class="quote"></div>
+        <div class="quote" id="quote"></div>
+        <div class="social-icons">
+            <a href="https://www.instagram.com/denis_dtsv" target="_blank" class="social-icon">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram">
+                <span class="social-name">Denis_dtsv</span>
+            </a>
+            <a href="https://www.snapchat.com/add/denis_dtsv" target="_blank" class="social-icon">
+                <img src="https://www.designenlassen.de/blog/wp-content/uploads/2024/03/Snapchat-Logo-2013.png" alt="Snapchat">
+                <span class="social-name">Denis_dtsv</span>
+            </a>
+        </div>
         <div class="social-icons">
             <a href="https://www.instagram.com/denis_dtsv" target="_blank" class="social-icon">
                 <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram">
@@ -113,10 +136,38 @@
             timeElement.textContent = `${hours}:${minutes}:${seconds}`;
         }
 
+        function displayRandomQuote() {
+            const quotes = [
+                "Time flies like an arrow; fruit flies like a banana. - Groucho Marx",
+                "Time is a created thing. To say 'I don't have time' is like saying, 'I don't want to.' - Lao Tzu",
+                "The future is something which everyone reaches at the rate of sixty minutes an hour, whatever he does, whoever he is. - C.S. Lewis",
+                "Time is what we want most, but what we use worst. - William Penn",
+                "Time you enjoy wasting is not wasted time. - Marthe Troly-Curtin",
+                "Time is the wisest counselor of all. - Pericles",
+                "Time is a great teacher, but unfortunately, it kills all its pupils. - Louis Hector Berlioz",
+                "Lost time is never found again. - Benjamin Franklin",
+                "Time is an illusion. Lunchtime doubly so. - Douglas Adams",
+                "The two most powerful warriors are patience and time. - Leo Tolstoy",
+                "The only reason for time is so that everything doesn't happen at once. - Albert Einstein",
+                "Time is a drug. Too much of it kills you. - Terry Pratchett",
+                "Time is free, but it's priceless. You can't own it, but you can use it. - Harvey Mackay",
+                "Time moves in one direction, memory in another. - William Gibson",
+                "Time is like a river. You cannot touch the same water twice, because the flow that has passed will never pass again. - Unknown",
+                "Time is the most valuable thing a man can spend. - Theophrastus",
+                "Time spent with cats is never wasted. - Sigmund Freud",
+                "We must use time as a tool, not as a couch. - John F. Kennedy",
+                "Time and tide wait for no man. - Geoffrey Chaucer",
+                "Time is money. - Benjamin Franklin"
+            ];
+            const randomIndex = Math.floor(Math.random() * quotes.length);
+            document.getElementById('quote').textContent = quotes[randomIndex];
+        }
+
         window.onload = function() {
             maybeRedirect(); // Check for redirection on page load
             setInterval(updateTime, 1000); // Update time every second
             updateTime(); // Initial call to display time immediately
+            displayRandomQuote(); // Display a random quote on page load
         };
     </script>
 </body>
