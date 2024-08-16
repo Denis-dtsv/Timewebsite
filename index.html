@@ -8,7 +8,6 @@
     <style>
         body {
             font-family: 'Roboto', sans-serif;
-            background: linear-gradient(135deg, rgb(21, 255, 0), rgb(14, 121, 0));
             display: flex;
             justify-content: center;
             align-items: center;
@@ -167,12 +166,24 @@
             document.getElementById('quote').textContent = quotes[randomIndex];
         }
 
+        function setRandomBackground() {
+            const colors = [
+                { start: 'rgb(255, 182, 193)', end: 'rgb(255, 105, 180)' },  // Pink gradient
+                { start: 'rgb(255, 223, 0)', end: 'rgb(255, 165, 0)' },      // Warm yellow gradient
+                { start: 'rgb(173, 216, 230)', end: 'rgb(135, 206, 235)' },  // Baby blue gradient
+                { start: 'rgb(48, 25, 52)', end: 'rgb(75, 0, 130)' }         // Black lilac gradient
+            ];
+            const randomColor = colors[Math.floor(Math.random() * colors.length)];
+            document.body.style.background = `linear-gradient(135deg, ${randomColor.start}, ${randomColor.end})`;
+        }
+
         window.onload = function() {
-            maybeRedirect(); // Check for redirection on page load
-            updateDate(); // Display date on page load
+            maybeRedirect();          // Check for redirection on page load
+            updateDate();             // Display date on page load
             setInterval(updateTime, 1000); // Update time every second
-            updateTime(); // Initial call to display time immediately
-            displayRandomQuote(); // Display a random quote on page load
+            updateTime();             // Initial call to display time immediately
+            displayRandomQuote();     // Display a random quote on page load
+            setRandomBackground();    // Set a random background color on page load
         };
     </script>
 </body>
