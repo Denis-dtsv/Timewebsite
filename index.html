@@ -1,190 +1,87 @@
-<!DOCTYPE html>
+
+!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1">
-    <title>Time</title>
-    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Out of Order</title>
     <style>
         body {
-            font-family: 'Roboto', sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            margin: 0;
-            overflow: hidden;
-            color: #fff;
-        }
-
-        .container {
             text-align: center;
-            background-color: rgba(255, 255, 255, 0.9);
-            padding: 30px;
-            border-radius: 20px;
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
-            width: 90%;
-            max-width: 500px;
-            box-sizing: border-box;
-            backdrop-filter: blur(10px);
+            background-color: #e9ecef;
+            color: #343a40;
         }
 
         h1 {
-            margin: 0 0 20px;
-            font-size: 2em;
-            font-weight: 700;
-            color: #333;
-        }
-
-        .date {
-            font-size: 1.5em;
-            margin-bottom: 10px;
-            color: #444;
-        }
-
-        .time {
             font-size: 2.5em;
-            margin-bottom: 10px;
-            color: #444;
+            margin-bottom: 15px;
+            color: #495057;
         }
 
-        .quote {
-            font-family: 'EB Garamond', serif;
-            font-size: 1em;
-            color: #666;
-            margin-bottom: 20px;
-        }
-
-        .social-icons {
-            display: flex;
-            flex-direction: row;
-            justify-content: center;
-            gap: 20px;
-            padding-bottom: 10px;
-        }
-
-        .social-icon {
-            display: flex;
-            align-items: center;
-            transition: transform 0.3s;
-        }
-
-        .social-icons a {
-            text-decoration: none;
-            color: #000;
-            display: flex;
-            align-items: center;
-        }
-
-        .social-icons img {
-            width: 40px;
-            height: 40px;
-            margin-right: 10px;
-            transition: transform 0.3s;
-        }
-
-        .social-icons img:hover {
-            transform: scale(1.1);
-        }
-
-        .social-icon:hover {
-            transform: scale(1.1);
-        }
-
-        .social-name {
+        p {
             font-size: 1.2em;
-            color: #333;
+            margin: 10px 0;
+            color: #6c757d;
+        }
+
+        #time {
+            font-size: 1.8em;
+            margin-bottom: 30px;
+            color: #0070ba;
+        }
+
+        .paypal-button {
+            display: flex;
+            align-items: center;
+            background-color: #0070ba;
+            color: #fff;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 1em;
+            transition: background-color 0.3s ease;
+        }
+
+        .paypal-button:hover {
+            background-color: #005c99;
+        }
+
+        .paypal-icon {
+            width: 20px;
+            height: 20px;
+            margin-right: 10px;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Welcome</h1>
-        <div class="date" id="date"></div>
-        <div class="time" id="time"></div>
-        <div class="quote" id="quote"></div>
-        <div class="social-icons">
-            <a href="https://www.instagram.com/denis_dtsv" target="_blank" class="social-icon">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram">
-                <span class="social-name">Denis_dtsv</span>
-            </a>
-            <a href="https://www.snapchat.com/add/denis_dtsv" target="_blank" class="social-icon">
-                <img src="https://www.designenlassen.de/blog/wp-content/uploads/2024/03/Snapchat-Logo-2013.png" alt="Snapchat">
-                <span class="social-name">Denis_dtsv</span>
-            </a>
-        </div>
-    </div>
+    <h1>Watch out of order</h1>
+    <p>Here the time</p>
+    <div id="time"></div>
+    <a href="https://www.paypal.com/pools/c/97i8Hn5OPN" target="_blank" class="paypal-button">
+        <img src="https://www.paypalobjects.com/webstatic/icon/pp258.png" alt="PayPal" class="paypal-icon">
+        Help to repair 
+    </a>
 
     <script>
-        function maybeRedirect() {
-            if (Math.random() < 0.10) { // 10% chance
-                window.location.href = 'https://www.youtube.com/watch?v=uHgt8giw1LY'; // Replace with desired YouTube video URL
-            }
-        }
-
-        function updateDate() {
-            const dateElement = document.getElementById('date');
-            const now = new Date();
-            const options = {  year: 'numeric', month: 'numeric', day: 'numeric' };
-            const dateString = now.toLocaleDateString(undefined, options);
-            dateElement.textContent = dateString;
-        }
-
         function updateTime() {
             const timeElement = document.getElementById('time');
             const now = new Date();
-            const hours = now.getHours().toString().padStart(2, '0');
-            const minutes = now.getMinutes().toString().padStart(2, '0');
-            const seconds = now.getSeconds().toString().padStart(2, '0');
-            timeElement.textContent = `${hours}:${minutes}:${seconds}`;
+            const formattedTime = now.toLocaleTimeString();
+            timeElement.textContent = formattedTime;
         }
 
-        function displayRandomQuote() {
-            const quotes = [
-                "Time flies like an arrow; fruit flies like a banana. - Groucho Marx",
-                "Time is a created thing. To say 'I don't have time' is like saying, 'I don't want to.' - Lao Tzu",
-                "The future is something which everyone reaches at the rate of sixty minutes an hour, whatever he does, whoever he is. - C.S. Lewis",
-                "Time is what we want most, but what we use worst. - William Penn",
-                "Time you enjoy wasting is not wasted time. - Marthe Troly-Curtin",
-                "Time is the wisest counselor of all. - Pericles",
-                "Time is a great teacher, but unfortunately, it kills all its pupils. - Louis Hector Berlioz",
-                "Lost time is never found again. - Benjamin Franklin",
-                "Time is an illusion. Lunchtime doubly so. - Douglas Adams",
-                "The two most powerful warriors are patience and time. - Leo Tolstoy",
-                "The only reason for time is so that everything doesn't happen at once. - Albert Einstein",
-                "Time is a drug. Too much of it kills you. - Terry Pratchett",
-                "Time is free, but it's priceless. You can't own it, but you can use it. - Harvey Mackay",
-                "Time moves in one direction, memory in another. - William Gibson",
-                "Time is like a river. You cannot touch the same water twice, because the flow that has passed will never pass again. - Unknown",
-                "Time is the most valuable thing a man can spend. - Theophrastus",
-                "Time spent with cats is never wasted. - Sigmund Freud",
-                "We must use time as a tool, not as a couch. - John F. Kennedy",
-                "Time and tide wait for no man. - Geoffrey Chaucer",
-                "Time is money. - Benjamin Franklin"
-            ];
-            const randomIndex = Math.floor(Math.random() * quotes.length);
-            document.getElementById('quote').textContent = quotes[randomIndex];
-        }
-
-        function setRandomBackground() {
-            const colors = [
-                { start: 'rgb(255, 182, 193)', end: 'rgb(255, 105, 180)' },  // Pink gradient
-                { start: 'rgb(255, 223, 0)', end: 'rgb(255, 165, 0)' },      // Warm yellow gradient
-                { start: 'rgb(173, 216, 230)', end: 'rgb(135, 206, 235)' },  // Baby blue gradient
-                { start: 'rgb(48, 25, 52)', end: 'rgb(75, 0, 130)' }         // Black lilac gradient
-            ];
-            const randomColor = colors[Math.floor(Math.random() * colors.length)];
-            document.body.style.background = `linear-gradient(135deg, ${randomColor.start}, ${randomColor.end})`;
-        }
-
-        window.onload = function() {
-            maybeRedirect();          // Check for redirection on page load
-            updateDate();             // Display date on page load
-            setInterval(updateTime, 1000); // Update time every second
-            updateTime();             // Initial call to display time immediately
-            displayRandomQuote();     // Display a random quote on page load
-            setRandomBackground();    // Set a random background color on page load
-        };
+        // Update time every second
+        setInterval(updateTime, 1000);
+        // Initialize time on page load
+        updateTime();
     </script>
 </body>
 </html>
